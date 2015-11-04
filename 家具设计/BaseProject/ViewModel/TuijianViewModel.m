@@ -35,7 +35,7 @@
 }
 -(NSString *)priceIncludeForRow:(NSInteger )row
 {
-    return [self TuijianModelForRow:row].price;
+    return [self TuijianModelForRow:row].priceInclude;
 }
 -(NSArray *)imageurlForRow:(NSInteger )row
 {
@@ -56,12 +56,12 @@
 }
 -(void)getMoreDataCompletionHandle:(CompletionHandle)completionHandle
 {
-    _page=1;
+    _page+=1;
     [self getDataFromNetCompleteHandle:completionHandle];
 }
 -(void)refreshDataCompletionHandle:(CompletionHandle)completionHandle
 {
-    _page+=1;
+    _page=1;
     [self getDataFromNetCompleteHandle:completionHandle];
 }
 

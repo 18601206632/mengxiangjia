@@ -15,7 +15,7 @@
 @property (nonatomic,strong)ScrollDisplayViewController *sdVC;
 @property (nonatomic,strong)TuijianViewModel *tuijianVM;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,strong)NSArray *imageUrls;
 
 @end
 
@@ -33,15 +33,28 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TuijianCell *cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"forIndexPath:indexPath];
+    TuijianCell *cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.titleLb.text=[self.tuijianVM nameForRow:indexPath.row];
     NSString *Style=[self.tuijianVM styleForRow:indexPath.row ];
     NSString *Space=[self.tuijianVM spaceForRow:indexPath.row];
     cell.descLb.text=[NSString stringWithFormat:@"%@ | %@",Style,Space];
     cell.priceLb.text=[self.tuijianVM spaceForRow:indexPath.row];
     cell.buildLb.text=[self.tuijianVM priceIncludeForRow:indexPath.row];
-    [cell.btnView addSubview:self.sdVC.view];
+    if ((indexPath.row+1)%4==0) {
+        cell.titleLb.text=nil;
+        cell.descLb.text=nil;
+        cell.priceLb.text=nil;
+        cell.buildLb.text=nil;
+    }
     
+    self.imageUrls=[self.tuijianVM imageurlForRow:indexPath.row];
+    [cell.yellowView addSubview:self.sdVC.view];
+    [_sdVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    UIView *greenView=[[UIView alloc]init];
+    greenView.backgroundColor=[UIColor greenColor];
+    cell.greenView=greenView;
     
     
     return cell;
@@ -49,7 +62,7 @@
 -(ScrollDisplayViewController *)sdVC
 {
     NSMutableArray *arr=[NSMutableArray new];
-    for (NSString *imgStr in self.tuijianVM.imageUrls) {
+    for (NSString *imgStr in self.imageUrls ) {
         [arr addObject:[NSURL URLWithString:imgStr]];
     }
     _sdVC=[[ScrollDisplayViewController alloc] initWithImgPaths:arr];

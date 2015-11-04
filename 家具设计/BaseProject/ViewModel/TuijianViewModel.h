@@ -10,7 +10,7 @@
 #import "TuijianNetModel.h"
 @interface TuijianViewModel : BaseViewModel
 @property (nonatomic)NSInteger rowNumber;
-@property (nonatomic,strong)NSMutableArray *imageUrls;
+//@property (nonatomic,strong)NSMutableArray *imageUrls;
 -(NSString *)nameForRow:(NSInteger )row;
 -(NSString *)priceForRow:(NSInteger )row;
 -(NSString *)styleForRow:(NSInteger )row;

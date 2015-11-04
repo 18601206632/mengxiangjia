@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//#import "ScrollDisplayViewController.h"
 @interface TuijianCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *btnView;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
+@property (weak, nonatomic) IBOutlet UIView *greenView;
 
 @property (weak, nonatomic) IBOutlet UILabel *descLb;
-@property (weak, nonatomic) IBOutlet UIView *greenView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLb;
 @property (weak, nonatomic) IBOutlet UILabel *buildLb;
-
+@property (weak, nonatomic) IBOutlet UIView *yellowView;
 
 
 

@@ -47,7 +47,7 @@
         vc.view = btn;
         btn.tag=1000+i;
         [btn bk_addEventHandler:^(id sender) {
-            [self.delegate scollDisplayViewController:self didSelectedIndex:btn.tag-1000];
+//            [self.delegate scollDisplayViewController:self didSelectedIndex:btn.tag-1000];
         } forControlEvents:UIControlEventTouchUpInside];
         [arr addObject:vc];
     }
